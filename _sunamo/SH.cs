@@ -1,4 +1,4 @@
-//namespace SunamoUriWebServices._sunamo.SunamoExceptions._AddedToAllCsproj;
+namespace SunamoUriWebServices._sunamo;
 
 internal class SH
 {
