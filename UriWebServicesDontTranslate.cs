@@ -1,7 +1,5 @@
 namespace SunamoUriWebServices;
 
-
-
 public partial class UriWebServices
 {
     public static class UriWebServicesDontTranslate
