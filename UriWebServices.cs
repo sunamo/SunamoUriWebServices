@@ -2,10 +2,12 @@ namespace SunamoUriWebServices;
 
 public partial class UriWebServices
 {
+    public const string githubCom = "https://github.com/";
+
     /// <summary>
-    /// alphabetically
+    ///     alphabetically
     /// </summary>
-    static readonly List<string> githubRepos = SHGetLines.GetLines(@"GridControlsInWpf_Blog
+    private static readonly List<string> githubRepos = SHGetLines.GetLines(@"GridControlsInWpf_Blog
 MyCodeExample
 sugo
 sunamo
@@ -30,8 +32,6 @@ sunamo.unsafe.Tests
 sunpm
 TranslateEngine");
 
-    public const string githubCom = "https://github.com/";
-
     public static bool IsGithubRepo(string fn)
     {
         return githubRepos.Contains(fn);
@@ -44,11 +44,8 @@ TranslateEngine");
 
     public static string AzureRepoWebUIFullOrGithub(string fn, AzureBuildUriArgs a = null)
     {
-        if (IsGithubRepo(fn))
-        {
-            return UriWebServices.GitClone(fn);
-        }
-        return UriWebServices.AzureRepoWebUIFull(fn, a);
+        if (IsGithubRepo(fn)) return GitClone(fn);
+        return AzureRepoWebUIFull(fn, a);
     }
 
     public partial class Facebook

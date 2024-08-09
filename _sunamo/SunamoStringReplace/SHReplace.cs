@@ -12,17 +12,10 @@ internal class SHReplace
         //}
 
         foreach (var item in co)
-        {
             if (string.IsNullOrEmpty(item))
-            {
                 return vstup;
-            }
-        }
 
-        foreach (var item in co)
-        {
-            vstup = vstup.Replace(item, zaCo);
-        }
+        foreach (var item in co) vstup = vstup.Replace(item, zaCo);
         return vstup;
     }
 }

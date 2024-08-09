@@ -1,37 +1,43 @@
 namespace SunamoUriWebServices.Ads;
+
 public class AdsRegionBase
 {
+    public List<string> All;
+    public string aukroCz;
+    public string avizoCz;
+    public string bazarCz;
+
     /// <summary>
-    /// 3. největší
+    ///     3. největší
     /// </summary>
-    public string bazosCz = null;
-    public string aukroCz = null;
+    public string bazosCz;
+
     /// <summary>
-    /// 1. největší
+    ///     1. největší
     /// </summary>
-    public string hyperinzerceCz = null;
-    public string bazarCz = null;
+    public string hyperinzerceCz;
+
     /// <summary>
-    /// 2. největší
+    ///     2. největší
     /// </summary>
-    public string sBazarCz = null;
-    public string avizoCz = null;
+    public string sBazarCz;
 
     public AdsRegionBase(string psc, string hyperinzerceCz, string bazarCz, string sBazarCz, string avizoCz)
     {
         bazosCz = AdsByPsc.bazosCz.Replace("%psc", "50002");
         aukroCz = AdsByPsc.aukroCz.Replace("%psc", "50002");
 
-        All = new List<string> { hyperinzerceCz,
-bazarCz, sBazarCz, avizoCz, bazosCz, aukroCz };
+        All = new List<string>
+        {
+            hyperinzerceCz,
+            bazarCz, sBazarCz, avizoCz, bazosCz, aukroCz
+        };
 
         this.hyperinzerceCz = hyperinzerceCz;
         this.bazarCz = bazarCz;
         this.sBazarCz = sBazarCz;
         this.avizoCz = avizoCz;
     }
-
-    public List<string> All = null;
 
     public void SearchInAll(string what)
     {

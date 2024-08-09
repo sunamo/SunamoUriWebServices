@@ -1,6 +1,5 @@
 namespace SunamoUriWebServices;
 
-
 public partial class UriWebServices
 {
     public static string GoogleImFeelingLucky(string v)
@@ -15,7 +14,8 @@ public partial class UriWebServices
 
     public static string TopRecepty(string what)
     {
-        return FromChromeReplacement("https://www.toprecepty.cz/vyhledavani.php?hledam=%s&kategorie=&autor=&razeni=", WebUtility.UrlEncode(what));
+        return FromChromeReplacement("https://www.toprecepty.cz/vyhledavani.php?hledam=%s&kategorie=&autor=&razeni=",
+            WebUtility.UrlEncode(what));
     }
 
     /// <param name="item"></param>
@@ -26,10 +26,7 @@ public partial class UriWebServices
 
     public static void GoogleMaps(List<string> list)
     {
-        foreach (var item in list)
-        {
-            Process.Start(GoogleMaps(item));
-        }
+        foreach (var item in list) Process.Start(GoogleMaps(item));
     }
 
     public static string KmoAll(string item)
@@ -46,6 +43,4 @@ public partial class UriWebServices
     {
         return FromChromeReplacement("https://tritius.kmo.cz/Katalog/search?q=%s&area=242&field=0", item);
     }
-
-
 }
