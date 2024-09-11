@@ -19,7 +19,7 @@ public partial class UriWebServices
                     "v\u00EDtana", "sv\u011Bt bylinek"]));
             }
 
-            foreach (var item in s_list) Process.Start(GoogleSearch($"{item} koření {spicyName}"));
+            foreach (var item in s_list) UriWebServices.OpenUri(GoogleSearch($"{item} koření {spicyName}"));
         }
     }
 }

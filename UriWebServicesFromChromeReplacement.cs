@@ -26,7 +26,7 @@ public partial class UriWebServices
 
     public static void GoogleMaps(List<string> list)
     {
-        foreach (var item in list) Process.Start(GoogleMaps(item));
+        foreach (var item in list) UriWebServices.OpenUri(GoogleMaps(item));
     }
 
     public static string KmoAll(string item)

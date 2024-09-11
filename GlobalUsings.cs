@@ -13,3 +13,6 @@ global using SunamoUriWebServices._sunamo.SunamoExceptions.OnlyInSE;
 global using System.Diagnostics;
 global using System.Net;
 global using System.Web;
+global using SunamoUriWebServices;
+global using SunamoUriWebServices.Ads;
+global using SunamoUriWebServices._sunamo;

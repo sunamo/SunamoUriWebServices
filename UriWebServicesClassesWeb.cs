@@ -18,14 +18,14 @@ public partial class UriWebServices
     /// <summary>
     ///     Insert A1 to every in A2 with %s
     /// </summary>
-    /// <param name="lyricsScz"></param>
+    /// <param name="searchTerm"></param>
     /// <param name="clipboardL"></param>
-    public static void SearchAll(string lyricsScz, List<string> clipboardL)
+    public static void SearchAll(string searchTerm, List<string> clipboardL)
     {
         foreach (var item in clipboardL)
         {
             opened++;
-            Process.Start(FromChromeReplacement(lyricsScz, item));
+            UriWebServices.OpenUri(FromChromeReplacement(item, searchTerm));
 
             if (opened % 10 == 0) Debugger.Break();
         }
@@ -37,7 +37,7 @@ public partial class UriWebServices
         foreach (var item in clipboardL)
         {
             opened++;
-            Process.Start(topRecepty.Invoke(item));
+            UriWebServices.OpenUri(topRecepty.Invoke(item));
             if (opened % 10 == 0) Debugger.Break();
         }
     }
@@ -45,7 +45,7 @@ public partial class UriWebServices
 
     public static void GoogleSearch(List<string> list)
     {
-        foreach (var item in list) Process.Start(GoogleSearch(item));
+        foreach (var item in list) UriWebServices.OpenUri(GoogleSearch(item));
     }
 
     public static string SpritMonitor(string car)
@@ -85,7 +85,7 @@ public partial class UriWebServices
             }
 
             var uri = GoogleSearchSite(item, v);
-            Process.Start(uri);
+            UriWebServices.OpenUri(uri);
             opened++;
         }
     }
@@ -275,8 +275,8 @@ public partial class UriWebServices
 
     public static class FurnitureInOva
     {
-        public const string wwwOrfaNabytekCz =
-            "https://www.orfa-nabytek.cz/produkty/hledani?sor=pra&pfr=&pto=&send=Zobrazit&m=&q=%s&do=formProductsFilter-submit";
+        // only in ova
+        //public const string wwwOrfaNabytekCz = "https://www.orfa-nabytek.cz/produkty/hledani?sor=pra&pfr=&pto=&send=Zobrazit&m=&q=%s&do=formProductsFilter-submit";
 
         public const string wwwScontoCz = "https://www.sconto.cz/hledani?q=%s";
         public const string wwwMoebelixCz = "https://www.moebelix.cz/s/?sort=priceAsc&s=%s";
@@ -285,10 +285,14 @@ public partial class UriWebServices
             "https://jysk.cz/search?query=%s&search_category=typed_query&op=Hledat#meta=solr&start=0&sort=fts_field_minsingleprice%2Basc";
 
         public const string wwwOkayCz = "https://www.okay.cz/hledani/?query=%s";
+        public const string wwwXxxlutzCz = "https://www.xxxlutz.cz/s/?s=%s";
+
         public static Type type = typeof(FurnitureInOva);
 
         //public const string wwwIdeaNabytekCz = "https://www.idea-nabytek.cz/ulozne-prostory/%se/?ordertype=asc&Ordering=ProductPriceWithVat";
     }
+
+
 
     public static class RepairMobile
     {
@@ -493,7 +497,7 @@ Template for which I will find, have to be in derivates the same:
                     "sv\u011Bt bylinek"]));
             }
 
-            foreach (var item in s_list) Process.Start(GoogleSearch($"{item} koření {spicyName}"));
+            foreach (var item in s_list) UriWebServices.OpenUri(GoogleSearch($"{item} koření {spicyName}"));
         }
     }
 
@@ -738,7 +742,7 @@ Template for which I will find, have to be in derivates the same:
         public static void SearchYouTubeSerialSerie(int parts, int serie, string name)
         {
             parts++;
-            for (var i = 1; i < parts; i++) Process.Start(GetLinkToSearch(name + " " + serie + " x " + i));
+            for (var i = 1; i < parts; i++) UriWebServices.OpenUri(GetLinkToSearch(name + " " + serie + " x " + i));
         }
 
 
