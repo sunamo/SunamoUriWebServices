@@ -22,25 +22,33 @@ public class AdsRegionBase
     /// </summary>
     public string sBazarCz;
 
-    public AdsRegionBase(string psc, string hyperinzerceCz, string bazarCz, string sBazarCz, string avizoCz)
+    List<string> Other { get; set; }
+
+    public AdsRegionBase(string psc, string hyperinzerceCz, string bazarCz, string sBazarCz, string avizoCz, params string[] other)
     {
-        bazosCz = AdsByPsc.bazosCz.Replace("%psc", "50002");
-        aukroCz = AdsByPsc.aukroCz.Replace("%psc", "50002");
+        bazosCz = AdsByPsc.bazosCz.Replace("%psc", psc);
+        aukroCz = AdsByPsc.aukroCz.Replace("%psc", psc);
 
         All = new List<string>
         {
             hyperinzerceCz,
-            bazarCz, sBazarCz, avizoCz, bazosCz, aukroCz
+            bazarCz, sBazarCz, avizoCz, bazosCz, aukroCz,
+
         };
+        All.AddRange(other);
 
         this.hyperinzerceCz = hyperinzerceCz;
         this.bazarCz = bazarCz;
         this.sBazarCz = sBazarCz;
         this.avizoCz = avizoCz;
+
+        Other = other.ToList();
     }
 
     public void SearchInAll(string what)
     {
         UriWebServices.SearchInAll(All, what);
     }
+
+
 }

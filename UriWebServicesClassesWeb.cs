@@ -13,7 +13,6 @@ public partial class UriWebServices
     public const string chromeSearchstringReplacement = "%s";
     private static int opened;
     public static string WikipediaEn = "https://en.wikipedia.org/w/index.php?search=%s";
-    public static Action<IList, string> SearchInAll;
 
     /// <summary>
     ///     Insert A1 to every in A2 with %s
@@ -30,7 +29,6 @@ public partial class UriWebServices
             if (opened % 10 == 0) Debugger.Break();
         }
     }
-
 
     public static void SearchAll(Func<string, string> topRecepty, List<string> clipboardL)
     {
@@ -194,9 +192,23 @@ public partial class UriWebServices
         return "https://www.twitter.com/" + nick;
     }
 
-    public static void AssignSearchInAll(Action<IList, string> assignSearchInAll)
+    /// <summary>
+    ///     A1 is chrome replacement
+    /// </summary>
+    /// <param name="array"></param>
+    /// <param name="what"></param>
+    public static void SearchInAll(IList array, string what)
     {
-        SearchInAll = assignSearchInAll;
+        foreach (var item in array)
+        {
+            opened++;
+            string uri = UriWebServices.FromChromeReplacement(item.ToString(), what);
+            UriWebServices.OpenUri(uri);
+            if (opened % 10 == 0)
+            {
+                System.Diagnostics.Debugger.Break();
+            }
+        }
     }
 
     public static string FromChromeReplacement(string uri, string term)

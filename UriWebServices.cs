@@ -34,7 +34,7 @@ sunamo.unsafe.Tests
 sunpm
 TranslateEngine");
 
-    internal static void OpenUri(string url)
+    public static void OpenUri(string url)
     {
         try
         {
@@ -45,7 +45,8 @@ TranslateEngine");
             // hack because of this: https://github.com/dotnet/corefx/issues/10361
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
-                url = url.Replace("&", "^&");
+                // Tohle nevím k čemu tu je, mrví to to akorát adresy
+                //url = url.Replace("&", "^&");
                 Process.Start(new ProcessStartInfo(url) { UseShellExecute = true });
             }
             else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
