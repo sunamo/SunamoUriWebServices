@@ -1,4 +1,3 @@
-
 namespace SunamoUriWebServices;
 using System.Runtime.InteropServices;
 
