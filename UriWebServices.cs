@@ -5,33 +5,37 @@ public partial class UriWebServices
 {
     public const string githubCom = "https://github.com/";
 
-    /// <summary>
-    ///     alphabetically
-    /// </summary>
-    private static readonly List<string> githubRepos = SHGetLines.GetLines(@"GridControlsInWpf_Blog
-MyCodeExample
-sugo
-sunamo
-sunamo5
-SunamoCssGenerator
-SunamoEditorConfig
-SunamoLaTeX
-SunamoMathpix
-SunamoRobotsTxt
-SunamoRuleset
-PlatformIndependentNuGetPackages
-PlatformIndependentNuGetPackages5
-PlatformIndependentNuGetPackages.Tests
-sunamo.github.io
-sunamo.notmine
-sunamo.notmine5
-sunamo.notmine.Tests
-sunamo.performance
-sunamo.Tests
-sunamo.unsafe
-sunamo.unsafe.Tests
-sunpm
-TranslateEngine");
+
+
+    //    /// <summary>
+    //    ///     alphabetically
+    //    /// </summary>
+    private static readonly List<string> myGithubReposNames = new();
+
+    //SHGetLines.GetLines(@"GridControlsInWpf_Blog
+    //MyCodeExample
+    //sugo
+    //sunamo
+    //sunamo5
+    //SunamoCssGenerator
+    //SunamoEditorConfig
+    //SunamoLaTeX
+    //SunamoMathpix
+    //SunamoRobotsTxt
+    //SunamoRuleset
+    //PlatformIndependentNuGetPackages
+    //PlatformIndependentNuGetPackages5
+    //PlatformIndependentNuGetPackages.Tests
+    //sunamo.github.io
+    //sunamo.notmine
+    //sunamo.notmine5
+    //sunamo.notmine.Tests
+    //sunamo.performance
+    //sunamo.Tests
+    //sunamo.unsafe
+    //sunamo.unsafe.Tests
+    //sunpm
+    //TranslateEngine");
 
     public static void OpenUri(string url)
     {
@@ -65,7 +69,7 @@ TranslateEngine");
 
     public static bool IsGithubRepo(string fn)
     {
-        return githubRepos.Contains(fn);
+        return myGithubReposNames.Contains(fn);
     }
 
     public static string GitClone(string slnName)
