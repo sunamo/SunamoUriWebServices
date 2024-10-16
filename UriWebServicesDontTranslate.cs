@@ -4,7 +4,7 @@ public partial class UriWebServices
 {
     public static bool IsToOpen(string item)
     {
-        return new List<string>([Consts.NA, Consts.na]).Contains(item);
+        return new List<string>(["N/A", "n/a"]).Contains(item);
     }
 
     public static class UriWebServicesDontTranslate

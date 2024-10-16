@@ -176,7 +176,7 @@ public partial class UriWebServices
 
     public static string AzureRepoWebUIDomain(AzureBuildUriArgs a = null)
     {
-        return Consts.https + (a != null && a.withLogin ? "radekjancik@" : "") +
+        return "https://" + (a != null && a.withLogin ? "radekjancik@" : "") +
                (a != null && a.personalAccessToken != null ? a.personalAccessToken + "@" : "") +
                "radekjancik.visualstudio.com/";
     }
@@ -222,7 +222,7 @@ public partial class UriWebServices
     public static string GoogleMaps(string coordsOrAddress, string center, string zoom)
     {
         var sb = new StringBuilder();
-        sb.Append("https://maps.google.com/maps?q=" + coordsOrAddress.Replace(AllStrings.space, "+") +
+        sb.Append("https://maps.google.com/maps?q=" + coordsOrAddress.Replace("", "+") +
                   "&hl=cs&ie=UTF8&t=h");
         if (!string.IsNullOrEmpty(center)) sb.Append("&ll=" + center);
         if (!string.IsNullOrEmpty(zoom)) sb.Append("&z=" + zoom);
@@ -760,7 +760,7 @@ Template for which I will find, have to be in derivates the same:
 
         public static string ReplaceOperators(string vstup)
         {
-            return SHReplace.ReplaceAll(vstup, "", "OR", "+", AllStrings.dash, AllStrings.qm, AllStrings.asterisk);
+            return SHReplace.ReplaceAll(vstup, "", "OR", "+", "-", "\"", "*");
         }
 
 

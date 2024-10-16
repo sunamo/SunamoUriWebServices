@@ -6,7 +6,7 @@ global using System;
 global using System.Reflection;
 global using SunamoUriWebServices._sunamo.SunamoStringGetLines;
 global using SunamoUriWebServices._sunamo.SunamoStringReplace;
-global using SunamoUriWebServices._sunamo.SunamoValues;
+global using SunamoUriWebServices;
 global using SunamoUriWebServices._public.SunamoData.Data;
 global using SunamoUriWebServices._sunamo.SunamoExceptions;
 global using System.Diagnostics;
