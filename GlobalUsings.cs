@@ -10,3 +10,4 @@ global using SunamoUriWebServices._sunamo.SunamoExceptions;
 global using System.Diagnostics;
 global using System.Net;
 global using System.Web;
+global using System.Diagnostics.CodeAnalysis;
