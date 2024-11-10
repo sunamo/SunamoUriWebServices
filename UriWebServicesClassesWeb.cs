@@ -142,9 +142,13 @@ public partial class UriWebServices
     /// <returns></returns>
     public static string AzureRepoWebUIFull2(string slnName)
     {
-        return null;
-        // var enc = WebUtility.UrlEncode(slnName);
-        // return $"https://radekjancik@dev.azure.com/radekjancik/{enc}/_git/{enc}";
+        if (ThrowEx.IsNullOrEmpty(nameof(slnName), slnName))
+        {
+            return null;
+        }
+
+        var enc = WebUtility.UrlEncode(slnName);
+        return $"https://radekjancik@dev.azure.com/radekjancik/{enc}/_git/{enc}";
     }
 
     public static string AzureRepoWebUI(string slnName, AzureBuildUriArgs a = null)

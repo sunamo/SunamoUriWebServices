@@ -5,11 +5,9 @@ public partial class UriWebServices
 {
     public const string githubCom = "https://github.com/";
 
-
-
-    //    /// <summary>
-    //    ///     alphabetically
-    //    /// </summary>
+    /// <summary>
+    ///     alphabetically
+    /// </summary>
     private static readonly List<string> myGithubReposNames = new();
 
     //SHGetLines.GetLines(@"GridControlsInWpf_Blog
