@@ -1,15 +1,12 @@
 namespace SunamoUriWebServices;
-using System.Runtime.InteropServices;
 
 public partial class UriWebServices
 {
     public const string githubCom = "https://github.com/";
-
     /// <summary>
     ///     alphabetically
     /// </summary>
     private static readonly List<string> myGithubReposNames = new();
-
     //SHGetLines.GetLines(@"GridControlsInWpf_Blog
     //MyCodeExample
     //sugo
@@ -34,7 +31,6 @@ public partial class UriWebServices
     //sunamo.unsafe.Tests
     //sunpm
     //TranslateEngine");
-
     public static void OpenUri(string url)
     {
         try
@@ -64,23 +60,19 @@ public partial class UriWebServices
             }
         }
     }
-
     public static bool IsGithubRepo(string fn)
     {
         return myGithubReposNames.Contains(fn);
     }
-
     public static string GitClone(string slnName)
     {
         return githubCom + "sunamo/" + slnName + ".git";
     }
-
     public static string AzureRepoWebUIFullOrGithub(string fn, AzureBuildUriArgs a = null)
     {
         if (IsGithubRepo(fn)) return GitClone(fn);
         return AzureRepoWebUIFull(fn, a);
     }
-
     public partial class Facebook
     {
         public static string FacebookProfile(string nick)
