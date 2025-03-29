@@ -14,7 +14,6 @@ global using System.Diagnostics.CodeAnalysis;
 global using SunamoUriWebServices;
 global using SunamoUriWebServices.Ads;
 global using SunamoUriWebServices._sunamo;
-
 global using System.Runtime.InteropServices;
 global using ILogger = Microsoft.Extensions.Logging.ILogger;
 global using Microsoft.Extensions.Logging;
