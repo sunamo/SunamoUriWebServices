@@ -1,5 +1,7 @@
 namespace SunamoUriWebServices;
 
+using SunamoUriWebServices.Values;
+
 public partial class UriWebServices
 {
     public const string karaokeTexty = "http://www.karaoketexty.cz/search?q=%s&sid=bbrpp&x=36&y=9";
@@ -315,7 +317,7 @@ public partial class UriWebServices
         public static void SearchInAll(string what)
         {
             opened++;
-            //UriWebServices.SearchInAll(RepairMobileValues.allRepairKitShops, what);
+            UriWebServices.SearchInAll(RepairMobileValues.allRepairKitShops, what);
             if (opened % 10 == 0) Debugger.Break();
         }
     }
