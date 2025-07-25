@@ -869,4 +869,10 @@ Template for which I will find, have to be in derivates the same:
         public const string wwwEurotechCz = "www.eurotech.cz";
         public const string wwwRPassCz = "www.r-pass.cz";
     }
+
+    public static class BrowserExtensions
+    {
+        public const string edgeAddons = "https://microsoftedge.microsoft.com/addons/search/%s";
+        public const string chromeWebStore = "https://chrome.google.com/webstore/search/%s?hl=en-US";
+    }
 }
