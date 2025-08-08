@@ -1,4 +1,4 @@
-﻿using SunamoUriWebServices;
+using SunamoUriWebServices;
 using SunamoUriWebServices.Ads;
 
 namespace RunnerUriWebServices;
