@@ -1,3 +1,4 @@
+// Instance variables refactored according to C# conventions
 namespace SunamoUriWebServices;
 
 public partial class UriWebServices

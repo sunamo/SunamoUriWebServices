@@ -1,4 +1,4 @@
-namespace SunamoUriWebServices;
+﻿namespace SunamoUriWebServices;
 
 using SunamoUriWebServices.Values;
 
@@ -642,15 +642,15 @@ Template for which I will find, have to be in derivates the same:
         /// <summary>
         ///     Search for everything on npm
         /// </summary>
-        public const string unpkg = "https://www.npmjs.com/search?q=%";
+        public const string npmjs = "https://www.npmjs.com/search?q=%";
 
-        public const string unpkgd = "https://www.npmjs.com/package/%s";
+        public const string npmjsp = "https://www.npmjs.com/package/%s";
         //public const string cdnjs = "";
         //public const string cdnjs = "";
         //public const string cdnjs = "";
         //public const string cdnjs = "";
 
-        public static readonly List<string> All = new List<string>([cdnjs, unpkg]);
+        public static readonly List<string> All = new List<string>([cdnjs, npmjs]);
     }
 
     public static class RemoteJobs

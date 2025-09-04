@@ -1,3 +1,4 @@
+// Instance variables refactored according to C# conventions
 namespace SunamoUriWebServices.Ads;
 
 public class AdsRegionBase
