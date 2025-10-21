@@ -1,3 +1,6 @@
+// EN: Variable names have been checked and replaced with self-descriptive names
+// CZ: Názvy proměnných byly zkontrolovány a nahrazeny samopopisnými názvy
+
 using SunamoUriWebServices;
 using SunamoUriWebServices.Ads;
 
@@ -9,18 +12,18 @@ internal class Program
     {
         Console.WriteLine("Hello, World!");
 
-        var p = AdsPhaRegion.Pha();
+        var parameter = AdsPhaRegion.Pha();
         string whatToSearch = null;
 
         //for (int i = 55; i < 61; i++)
         //{
         //    whatToSearch = "televize " + i + "\"";
-        //    //UriWebServices.SearchInAll(p.All, whatToSearch);
-        //    UriWebServices.OpenUri(UriWebServices.FromChromeReplacement(p.bazosCz, whatToSearch));
+        //    //UriWebServices.SearchInAll(parameter.All, whatToSearch);
+        //    UriWebServices.OpenUri(UriWebServices.FromChromeReplacement(parameter.bazosCz, whatToSearch));
         //}
 
         whatToSearch = "TV stolek";
-        UriWebServices.SearchInAll(p.All, whatToSearch);
-        //UriWebServices.OpenUri(UriWebServices.FromChromeReplacement(p.hyperinzerceCz, whatToSearch));
+        UriWebServices.SearchInAll(parameter.All, whatToSearch);
+        //UriWebServices.OpenUri(UriWebServices.FromChromeReplacement(parameter.hyperinzerceCz, whatToSearch));
     }
 }

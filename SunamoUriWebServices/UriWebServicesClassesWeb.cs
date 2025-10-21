@@ -1,4 +1,7 @@
-﻿namespace SunamoUriWebServices;
+// EN: Variable names have been checked and replaced with self-descriptive names
+// CZ: Názvy proměnných byly zkontrolovány a nahrazeny samopopisnými názvy
+
+namespace SunamoUriWebServices;
 
 using SunamoUriWebServices.Values;
 
@@ -51,8 +54,8 @@ public partial class UriWebServices
     public static string SpritMonitor(string car)
     {
         // https://www.spritmonitor.de/en/overview/45-Skoda/1289-Citigo.html?fueltype=4
-        var d = "cng overview -\"/detail/\"" + car;
-        return GoogleSearchSite("spritmonitor.de", d);
+        var data = "cng overview -\"/detail/\"" + car;
+        return GoogleSearchSite("spritmonitor.de", data);
     }
 
 
@@ -97,16 +100,16 @@ public partial class UriWebServices
     ///     A1 už musí být escapováno
     /// </summary>
     /// <param name="s"></param>
-    public static string GoogleSearch(string s)
+    public static string GoogleSearch(string text)
     {
         // q for reviews in czech and not translated
-        return "https://www.google.cz/search?hl=cs&q=" + UrlEncode(s);
+        return "https://www.google.cz/search?hl=cs&q=" + UrlEncode(text);
     }
 
-    public static string GoogleSearchImages(string s)
+    public static string GoogleSearchImages(string text)
     {
         // q for reviews in czech and not translated
-        return "https://www.google.cz/search?hl=cs&tbm=isch&q=" + UrlEncode(s);
+        return "https://www.google.cz/search?hl=cs&tbm=isch&q=" + UrlEncode(text);
     }
 
     public static string GoogleSearchSite(string site, string v)
@@ -163,9 +166,9 @@ public partial class UriWebServices
         return AzureRepoWebUI(slnName) + "/_settings/";
     }
 
-    public static string UrlEncode(string s)
+    public static string UrlEncode(string text)
     {
-        return HttpUtility.UrlEncode(s);
+        return HttpUtility.UrlEncode(text);
     }
 
 
@@ -227,12 +230,12 @@ public partial class UriWebServices
 
     public static string GoogleMaps(string coordsOrAddress, string center, string zoom)
     {
-        var sb = new StringBuilder();
-        sb.Append("https://maps.google.com/maps?q=" + coordsOrAddress.Replace("", "+") +
+        var stringBuilder = new StringBuilder();
+        stringBuilder.Append("https://maps.google.com/maps?q=" + coordsOrAddress.Replace("", "+") +
                   "&hl=cs&ie=UTF8&t=h");
-        if (!string.IsNullOrEmpty(center)) sb.Append("&ll=" + center);
-        if (!string.IsNullOrEmpty(zoom)) sb.Append("&z=" + zoom);
-        return sb.ToString();
+        if (!string.IsNullOrEmpty(center)) stringBuilder.Append("&ll=" + center);
+        if (!string.IsNullOrEmpty(zoom)) stringBuilder.Append("&z=" + zoom);
+        return stringBuilder.ToString();
     }
 
     public static class ITJobs
