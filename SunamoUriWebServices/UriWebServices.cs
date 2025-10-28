@@ -1,10 +1,9 @@
-// EN: Variable names have been checked and replaced with self-descriptive names
-// CZ: Názvy proměnných byly zkontrolovány a nahrazeny samopopisnými názvy
-// Instance variables refactored according to C# conventions
 namespace SunamoUriWebServices;
 
 public partial class UriWebServices
 {
+
+
     public const string githubCom = "https://github.com/";
     /// <summary>
     ///     alphabetically

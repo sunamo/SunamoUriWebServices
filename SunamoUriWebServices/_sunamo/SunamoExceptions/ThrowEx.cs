@@ -1,6 +1,7 @@
+namespace SunamoUriWebServices._sunamo.SunamoExceptions;
+
 // EN: Variable names have been checked and replaced with self-descriptive names
 // CZ: Názvy proměnných byly zkontrolovány a nahrazeny samopopisnými názvy
-namespace SunamoUriWebServices._sunamo.SunamoExceptions;
 internal partial class ThrowEx
 {
 
@@ -43,8 +44,8 @@ internal partial class ThrowEx
         }
         else
         {
-            Type t = type.GetType();
-            typeFullName = t.FullName ?? "Type cannot be get via type.GetType()";
+            Type typeObject = type.GetType();
+            typeFullName = typeObject.FullName ?? "Type cannot be get via type.GetType()";
         }
         return string.Concat(typeFullName, ".", methodName);
     }

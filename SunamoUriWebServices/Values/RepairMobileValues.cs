@@ -1,6 +1,7 @@
+namespace SunamoUriWebServices.Values;
+
 // EN: Variable names have been checked and replaced with self-descriptive names
 // CZ: Názvy proměnných byly zkontrolovány a nahrazeny samopopisnými názvy
-namespace SunamoUriWebServices.Values;
 public class RepairMobileValues
 {
     public static List<string> allRepairServicesOva = null;

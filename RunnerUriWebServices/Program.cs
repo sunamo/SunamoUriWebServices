@@ -15,9 +15,9 @@ internal class Program
         var parameter = AdsPhaRegion.Pha();
         string whatToSearch = null;
 
-        //for (int i = 55; i < 61; i++)
+        //for (int index = 55; index < 61; index++)
         //{
-        //    whatToSearch = "televize " + i + "\"";
+        //    whatToSearch = "televize " + index + "\"";
         //    //UriWebServices.SearchInAll(parameter.All, whatToSearch);
         //    UriWebServices.OpenUri(UriWebServices.FromChromeReplacement(parameter.bazosCz, whatToSearch));
         //}

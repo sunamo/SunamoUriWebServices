@@ -1,6 +1,3 @@
-// EN: Variable names have been checked and replaced with self-descriptive names
-// CZ: Názvy proměnných byly zkontrolovány a nahrazeny samopopisnými názvy
-
 namespace SunamoUriWebServices;
 
 using SunamoUriWebServices.Values;
@@ -763,7 +760,7 @@ Template for which I will find, have to be in derivates the same:
         public static void SearchYouTubeSerialSerie(int parts, int serie, string name)
         {
             parts++;
-            for (var i = 1; i < parts; i++) UriWebServices.OpenUri(GetLinkToSearch(name + " " + serie + " x " + i));
+            for (var index = 1; index < parts; index++) UriWebServices.OpenUri(GetLinkToSearch(name + " " + serie + " x " + index));
         }
 
 
