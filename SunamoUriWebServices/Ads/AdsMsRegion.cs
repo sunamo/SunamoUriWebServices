@@ -1,54 +1,83 @@
 namespace SunamoUriWebServices.Ads;
 
 /// <summary>
-///     For phones, etc. is better repas sites as mp.cz
+/// Advertisement search URLs for the Moravian-Silesian region.
+/// For phones, etc. repas sites like mp.cz are better.
 /// </summary>
 public static class AdsMsRegion
 {
-    public const string hyperinzerceCz =
+    /// <summary>
+    /// Hyperinzerce.cz search URL for Moravian-Silesian region.
+    /// </summary>
+    public const string HyperinzerceCz =
         "https://hyperinzerce.cz/inzeraty/Index?query=%s&priceFrom=0&priceTo=99000000&distanceSearch=False&regionIds=HKK";
 
-    public const string bazarCz = "https://www.bazar.cz/ostrava/hledat/%s/?a=25&p=%psc&pid=6934";
+    /// <summary>
+    /// Bazar.cz search URL for Moravian-Silesian region.
+    /// </summary>
+    public const string BazarCz = "https://www.bazar.cz/ostrava/hledat/%s/?a=25&p=%psc&pid=6934";
 
-    public const string sBazarCz = "https://www.sbazar.cz/hledej/%s/0-vsechny-kategorie/moravskoslezsky";
-    public const string avizoCz = "https://www.avizo.cz/fulltext/?beng=1&searchfor=ads&keywords=%s";
-    public static Type type = typeof(AdsMsRegion);
+    /// <summary>
+    /// SBazar.cz search URL for Moravian-Silesian region.
+    /// </summary>
+    public const string SBazarCz = "https://www.sbazar.cz/hledej/%s/0-vsechny-kategorie/moravskoslezsky";
 
-    public static AdsRegionBase ci = new("70800", hyperinzerceCz, bazarCz, sBazarCz, avizoCz);
+    /// <summary>
+    /// Avizo.cz search URL for Moravian-Silesian region.
+    /// </summary>
+    public const string AvizoCz = "https://www.avizo.cz/fulltext/?beng=1&searchfor=ads&keywords=%s";
+
+    /// <summary>
+    /// Type reference for reflection.
+    /// </summary>
+    public static Type ReflectionType = typeof(AdsMsRegion);
+
+    /// <summary>
+    /// Preconfigured region search instance for Moravian-Silesian region.
+    /// </summary>
+    public static AdsRegionBase Instance = new("70800", HyperinzerceCz, BazarCz, SBazarCz, AvizoCz);
 
     #region Methods
 
     /// <summary>
-    ///     70800 v okoli 25km
+    /// Gets Bazos.cz search URL for the specified query (70800, 25km radius).
     /// </summary>
-    /// <param name="what"></param>
-    public static string BazosCz(string what)
+    /// <param name="searchQuery">The search query.</param>
+    /// <returns>The formatted search URL.</returns>
+    public static string SearchBazosCz(string searchQuery)
     {
-        return FromChromeReplacement(ci.bazosCz, what);
+        return FromChromeReplacement(Instance.BazosCz, searchQuery);
     }
 
+    /// <summary>
+    /// Replaces Chrome search placeholder with the specified term.
+    /// </summary>
+    /// <param name="uri">The URI template with placeholder.</param>
+    /// <param name="term">The search term to insert.</param>
+    /// <returns>The formatted URI.</returns>
     public static string FromChromeReplacement(string uri, string term)
     {
-        //ThrowEx.NotImplementedMethod();
         return UriWebServices.FromChromeReplacement(uri, term);
     }
 
     /// <summary>
-    ///     MS kraj
+    /// Gets Hyperinzerce.cz search URL for the specified query (Moravian-Silesian region).
     /// </summary>
-    /// <param name="what"></param>
-    public static string HyperInzerceCz(string what)
+    /// <param name="searchQuery">The search query.</param>
+    /// <returns>The formatted search URL.</returns>
+    public static string SearchHyperinzerceCz(string searchQuery)
     {
-        return FromChromeReplacement(hyperinzerceCz, what);
+        return FromChromeReplacement(HyperinzerceCz, searchQuery);
     }
 
     /// <summary>
-    ///     70800 +25km
+    /// Gets Bazar.cz search URL for the specified query (70800, 25km radius).
     /// </summary>
-    /// <param name="what"></param>
-    public static string BazarCz(string what)
+    /// <param name="searchQuery">The search query.</param>
+    /// <returns>The formatted search URL.</returns>
+    public static string SearchBazarCz(string searchQuery)
     {
-        return FromChromeReplacement(bazarCz, what);
+        return FromChromeReplacement(BazarCz, searchQuery);
     }
 
     #endregion

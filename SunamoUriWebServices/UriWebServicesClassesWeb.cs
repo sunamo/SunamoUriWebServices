@@ -2,25 +2,61 @@ namespace SunamoUriWebServices;
 
 using SunamoUriWebServices.Values;
 
+/// <summary>
+/// Provides URI building methods for various web services and search engines.
+/// </summary>
 public partial class UriWebServices
 {
-    public const string karaokeTexty = "http://www.karaoketexty.cz/search?q=%s&sid=bbrpp&x=36&y=9";
-    public const string instagramProfile = "https://www.instagram.com/{0}/";
-    public const string heureka = "https://www.heureka.cz/?h[fraze]=%s&ss=1";
-    public const string geocachingLog = "https://www.geocaching.com/play/geocache/%s/log";
-    public const string amateriComCs = "https://www.amateri.com/cs/lide/search?search=%s";
-    public const string amateriComEn = "https://www.amateri.com/en/lide/search?search=%s";
-    public const string chromeSearchstringReplacement = "%s";
-    private static int opened;
-    public static string WikipediaEn = "https://en.wikipedia.org/w/index.php?search=%s";
     /// <summary>
-    ///     Insert A1 to every in A2 with %s
+    /// Karaoke texty search URL template.
     /// </summary>
-    /// <param name = "searchTerm"></param>
-    /// <param name = "clipboardL"></param>
-    public static void SearchAll(string searchTerm, List<string> clipboardL)
+    public const string KaraokeTexty = "http://www.karaoketexty.cz/search?q=%s&sid=bbrpp&x=36&y=9";
+
+    /// <summary>
+    /// Instagram profile URL template.
+    /// </summary>
+    public const string InstagramProfile = "https://www.instagram.com/{0}/";
+
+    /// <summary>
+    /// Heureka search URL template.
+    /// </summary>
+    public const string Heureka = "https://www.heureka.cz/?h[fraze]=%s&ss=1";
+
+    /// <summary>
+    /// Geocaching log URL template.
+    /// </summary>
+    public const string GeocachingLog = "https://www.geocaching.com/play/geocache/%s/log";
+
+    /// <summary>
+    /// Amateri.com Czech search URL template.
+    /// </summary>
+    public const string AmateriComCs = "https://www.amateri.com/cs/lide/search?search=%s";
+
+    /// <summary>
+    /// Amateri.com English search URL template.
+    /// </summary>
+    public const string AmateriComEn = "https://www.amateri.com/en/lide/search?search=%s";
+
+    /// <summary>
+    /// Chrome search string replacement placeholder.
+    /// </summary>
+    public const string ChromeSearchstringReplacement = "%s";
+
+    private static int opened;
+
+    /// <summary>
+    /// Wikipedia English search URL template.
+    /// </summary>
+    public static string WikipediaEn = "https://en.wikipedia.org/w/index.php?search=%s";
+
+    /// <summary>
+    /// Searches for a term across all provided Chrome replacement URL templates.
+    /// </summary>
+    /// <param name="searchTerm">The search term to insert.</param>
+    /// <param name="list">The list of Chrome replacement URL templates.</param>
+    public static void SearchAll(string searchTerm, List<string> list)
     {
-        foreach (var item in clipboardL)
+        foreach (var item in list)
         {
             opened++;
             UriWebServices.OpenUri(FromChromeReplacement(item, searchTerm));
@@ -29,172 +65,232 @@ public partial class UriWebServices
         }
     }
 
-    public static void SearchAll(Func<string, string> topRecepty, List<string> clipboardL)
+    /// <summary>
+    /// Searches using a URL builder function across all items in the list.
+    /// </summary>
+    /// <param name="urlBuilder">The function that builds a URL from a search term.</param>
+    /// <param name="list">The list of search terms.</param>
+    public static void SearchAll(Func<string, string> urlBuilder, List<string> list)
     {
-        foreach (var item in clipboardL)
+        foreach (var item in list)
         {
             opened++;
-            UriWebServices.OpenUri(topRecepty.Invoke(item));
+            UriWebServices.OpenUri(urlBuilder.Invoke(item));
             if (opened % 10 == 0)
                 Debugger.Break();
         }
     }
 
+    /// <summary>
+    /// Opens Google search for each item in the list.
+    /// </summary>
+    /// <param name="list">The list of search queries.</param>
     public static void GoogleSearch(List<string> list)
     {
         foreach (var item in list)
             UriWebServices.OpenUri(GoogleSearch(item));
     }
 
-    public static string SpritMonitor(string car)
+    /// <summary>
+    /// Gets SpritMonitor search URL for the specified search query.
+    /// </summary>
+    /// <param name="searchQuery">The search query.</param>
+    /// <returns>The formatted SpritMonitor search URL.</returns>
+    public static string SpritMonitor(string searchQuery)
     {
-        // https://www.spritmonitor.de/en/overview/45-Skoda/1289-Citigo.html?fueltype=4
-        var data = "cng overview -\"/detail/\"" + car;
+        var data = "cng overview -\"/detail/\"" + searchQuery;
         return GoogleSearchSite("spritmonitor.de", data);
     }
 
-    public static string SearchGitHub(string item)
+    /// <summary>
+    /// Gets GitHub search URL for the specified search query.
+    /// </summary>
+    /// <param name="searchQuery">The search query.</param>
+    /// <returns>The formatted GitHub search URL.</returns>
+    public static string SearchGitHub(string searchQuery)
     {
-        return "https://github.com/search?q=" + item;
+        return "https://github.com/search?q=" + searchQuery;
     }
 
-    public static string WebShare(string item)
+    /// <summary>
+    /// Gets WebShare search URL for the specified search query.
+    /// </summary>
+    /// <param name="searchQuery">The search query.</param>
+    /// <returns>The formatted WebShare search URL.</returns>
+    public static string WebShare(string searchQuery)
     {
-        return "https://webshare.cz/#/search?what=" + UrlEncode(item);
+        return "https://webshare.cz/#/search?what=" + UrlEncode(searchQuery);
     }
 
-    public static string GooglePlusProfile(string nick)
+    /// <summary>
+    /// Gets Google Plus profile URL for the specified nickname.
+    /// </summary>
+    /// <param name="nickname">The Google Plus username.</param>
+    /// <returns>The Google Plus profile URL.</returns>
+    public static string GooglePlusProfile(string nickname)
     {
-        return "https://www.google.com/" + nick;
+        return "https://www.google.com/" + nickname;
     }
 
-    public static void GoogleSearchInAllSite(List<string> allRepairKitShops, string v)
+    /// <summary>
+    /// Searches Google for a query across all provided sites.
+    /// </summary>
+    /// <param name="list">The list of sites to search.</param>
+    /// <param name="searchQuery">The search query.</param>
+    public static void GoogleSearchInAllSite(List<string> list, string searchQuery)
     {
-        foreach (var item in allRepairKitShops)
+        foreach (var item in list)
         {
-            if (opened % 10 == 0 && opened != 0)
-            {
-            //System.Diagnostics.Debugger.Break();
-#if DEBUG
-
-#endif
-            }
-
-            var uri = GoogleSearchSite(item, v);
+            var uri = GoogleSearchSite(item, searchQuery);
             UriWebServices.OpenUri(uri);
             opened++;
         }
     }
 
-    //http://www.bdsluzby.cz/stavebni-cinnost/materialy.htm
     /// <summary>
-    ///     A1 už musí být escapováno
+    /// Gets Google search URL for the specified text.
     /// </summary>
-    /// <param name = "s"></param>
+    /// <param name="text">The search text.</param>
+    /// <returns>The formatted Google search URL.</returns>
     public static string GoogleSearch(string text)
     {
-        // q for reviews in czech and not translated
         return "https://www.google.cz/search?hl=cs&q=" + UrlEncode(text);
     }
 
+    /// <summary>
+    /// Gets Google Images search URL for the specified text.
+    /// </summary>
+    /// <param name="text">The search text.</param>
+    /// <returns>The formatted Google Images search URL.</returns>
     public static string GoogleSearchImages(string text)
     {
-        // q for reviews in czech and not translated
         return "https://www.google.cz/search?hl=cs&tbm=isch&q=" + UrlEncode(text);
     }
 
-    public static string GoogleSearchSite(string site, string v)
+    /// <summary>
+    /// Gets Google site-specific search URL.
+    /// </summary>
+    /// <param name="site">The site to search within.</param>
+    /// <param name="searchQuery">The search query.</param>
+    /// <returns>The formatted Google site-specific search URL.</returns>
+    public static string GoogleSearchSite(string site, string searchQuery)
     {
         site = site.Trim();
-        var uri = new Uri(site);
-        var host = string.Empty;
-        if (uri != null)
-            host = uri.Host;
-        else
-            host = site;
-        //https://www.google.cz/search?q=site%3Asunamo.cz+s
-        return "https://www.google.cz/search?q=site%3A" + host + "+" + UrlEncode(v);
+        var parsedUri = new Uri(site);
+        var host = parsedUri.Host;
+        return "https://www.google.cz/search?q=site%3A" + host + "+" + UrlEncode(searchQuery);
     }
 
     /// <summary>
-    ///     Point to Repos tab
-    ///     Already new radekjancik
-    ///     Working with spaces right (SQL Server Scripts1)
+    /// Gets VSTS Git repository URL for the specified solution name.
     /// </summary>
-    /// <param name = "slnName"></param>
-    public static string GitRepoInVsts(string slnName)
+    /// <param name="solutionName">The solution name.</param>
+    /// <returns>The VSTS Git repository URL.</returns>
+    public static string GitRepoInVsts(string solutionName)
     {
-        return "https://radekjancik.visualstudio.com/_git/" + WebUtility.UrlEncode(slnName);
+        return "https://radekjancik.visualstudio.com/_git/" + WebUtility.UrlEncode(solutionName);
     }
 
     /// <summary>
-    ///     Just gray screen (22-12-2021)
+    /// Gets Azure Repo Web UI full URL (alternative format, currently shows gray screen).
     /// </summary>
-    /// <param name = "slnName"></param>
-    /// <returns></returns>
-    public static string AzureRepoWebUIFull2(string slnName)
+    /// <param name="solutionName">The solution name.</param>
+    /// <returns>The Azure Repo Web UI URL.</returns>
+    public static string? AzureRepoWebUIFull2(string solutionName)
     {
-        if (ThrowEx.IsNullOrEmpty(nameof(slnName), slnName))
+        if (ThrowEx.IsNullOrEmpty(nameof(solutionName), solutionName))
         {
             return null;
         }
 
-        var enc = WebUtility.UrlEncode(slnName);
-        return $"https://radekjancik@dev.azure.com/radekjancik/{enc}/_git/{enc}";
+        var encodedName = WebUtility.UrlEncode(solutionName);
+        return $"https://radekjancik@dev.azure.com/radekjancik/{encodedName}/_git/{encodedName}";
     }
 
-    public static string AzureRepoWebUI(string slnName, AzureBuildUriArgs a = null)
+    /// <summary>
+    /// Gets Azure Repo Web UI URL for the specified solution name.
+    /// </summary>
+    /// <param name="solutionName">The solution name.</param>
+    /// <param name="args">Optional Azure build URI arguments.</param>
+    /// <returns>The Azure Repo Web UI URL.</returns>
+    public static string AzureRepoWebUI(string solutionName, AzureBuildUriArgs? args = null)
     {
-        return AzureRepoWebUIDomain(a) + WebUtility.UrlEncode(slnName);
+        return AzureRepoWebUIDomain(args) + WebUtility.UrlEncode(solutionName);
     }
 
-    public static string AzureRepoWebUISettings(string slnName)
+    /// <summary>
+    /// Gets Azure Repo Web UI settings URL for the specified solution name.
+    /// </summary>
+    /// <param name="solutionName">The solution name.</param>
+    /// <returns>The Azure Repo Web UI settings URL.</returns>
+    public static string AzureRepoWebUISettings(string solutionName)
     {
-        return AzureRepoWebUI(slnName) + "/_settings/";
+        return AzureRepoWebUI(solutionName) + "/_settings/";
     }
 
+    /// <summary>
+    /// URL-encodes the specified text.
+    /// </summary>
+    /// <param name="text">The text to encode.</param>
+    /// <returns>The URL-encoded text.</returns>
     public static string UrlEncode(string text)
     {
         return HttpUtility.UrlEncode(text);
     }
 
     /// <summary>
-    ///     Just gray screen (22-12-2021)
+    /// Gets Azure Repo Web UI full URL (currently shows gray screen).
     /// </summary>
-    /// <param name = "slnName"></param>
-    /// <returns></returns>
-    public static string AzureRepoWebUIFull(string slnName, AzureBuildUriArgs a = null)
+    /// <param name="solutionName">The solution name.</param>
+    /// <param name="args">Optional Azure build URI arguments.</param>
+    /// <returns>The Azure Repo Web UI full URL.</returns>
+    public static string AzureRepoWebUIFull(string solutionName, AzureBuildUriArgs? args = null)
     {
-        var enc = WebUtility.UrlEncode(slnName);
-        return AzureRepoWebUIDomain(a) + $"{enc}/_git/{enc}";
-    }
-
-    public static string AzureRepoWebUIDomain(AzureBuildUriArgs a = null)
-    {
-        return "https://" + (a != null && a.withLogin ? "radekjancik@" : "") + (a != null && a.personalAccessToken != null ? a.personalAccessToken + "@" : "") + "radekjancik.visualstudio.com/";
-    }
-
-    public static string YouTubeProfile(string nick)
-    {
-        return "https://www.youtube.com/c/" + nick;
-    }
-
-    public static string TwitterProfile(string nick)
-    {
-        return "https://www.twitter.com/" + nick;
+        var encodedName = WebUtility.UrlEncode(solutionName);
+        return AzureRepoWebUIDomain(args) + $"{encodedName}/_git/{encodedName}";
     }
 
     /// <summary>
-    ///     A1 is chrome replacement
+    /// Gets Azure Repo Web UI domain URL.
     /// </summary>
-    /// <param name = "array"></param>
-    /// <param name = "what"></param>
-    public static void SearchInAll(IList array, string what)
+    /// <param name="args">Optional Azure build URI arguments.</param>
+    /// <returns>The Azure Repo Web UI domain URL.</returns>
+    public static string AzureRepoWebUIDomain(AzureBuildUriArgs? args = null)
     {
-        foreach (var item in array)
+        return "https://" + (args != null && args.IsWithLogin ? "radekjancik@" : "") + (args != null && args.PersonalAccessToken != null ? args.PersonalAccessToken + "@" : "") + "radekjancik.visualstudio.com/";
+    }
+
+    /// <summary>
+    /// Gets YouTube profile URL for the specified nickname.
+    /// </summary>
+    /// <param name="nickname">The YouTube username.</param>
+    /// <returns>The YouTube profile URL.</returns>
+    public static string YouTubeProfile(string nickname)
+    {
+        return "https://www.youtube.com/c/" + nickname;
+    }
+
+    /// <summary>
+    /// Gets Twitter profile URL for the specified nickname.
+    /// </summary>
+    /// <param name="nickname">The Twitter username.</param>
+    /// <returns>The Twitter profile URL.</returns>
+    public static string TwitterProfile(string nickname)
+    {
+        return "https://www.twitter.com/" + nickname;
+    }
+
+    /// <summary>
+    /// Searches in all provided Chrome replacement URL templates for the specified query.
+    /// </summary>
+    /// <param name="list">The list of Chrome replacement URL templates.</param>
+    /// <param name="searchQuery">The search query.</param>
+    public static void SearchInAll(IList list, string searchQuery)
+    {
+        foreach (var item in list)
         {
             opened++;
-            string uri = UriWebServices.FromChromeReplacement(item.ToString(), what);
+            string uri = UriWebServices.FromChromeReplacement(item.ToString()!, searchQuery);
             UriWebServices.OpenUri(uri);
             if (opened % 10 == 0)
             {
@@ -203,14 +299,25 @@ public partial class UriWebServices
         }
     }
 
+    /// <summary>
+    /// Replaces Chrome search placeholder in a URI with the specified term.
+    /// </summary>
+    /// <param name="uri">The URI template containing %s placeholder.</param>
+    /// <param name="term">The search term to insert.</param>
+    /// <returns>The URI with the placeholder replaced.</returns>
     public static string FromChromeReplacement(string uri, string term)
     {
-        // UrlEncode is not needed because not encode space to %20
-        term = Uri.EscapeUriString(term);
-        //term = UH.UrlEncode(term);
-        return uri.Replace(chromeSearchstringReplacement, term);
+        term = Uri.EscapeDataString(term);
+        return uri.Replace(ChromeSearchstringReplacement, term);
     }
 
+    /// <summary>
+    /// Gets Google Maps URL for the specified coordinates or address.
+    /// </summary>
+    /// <param name="coordsOrAddress">The coordinates or address to search for.</param>
+    /// <param name="center">The map center coordinates.</param>
+    /// <param name="zoom">The map zoom level.</param>
+    /// <returns>The formatted Google Maps URL.</returns>
     public static string GoogleMaps(string coordsOrAddress, string center, string zoom)
     {
         var stringBuilder = new StringBuilder();
@@ -222,14 +329,30 @@ public partial class UriWebServices
         return stringBuilder.ToString();
     }
 
+    /// <summary>
+    /// Provides IT job search URL templates.
+    /// </summary>
     public static class ITJobs
     {
-        public const string cooljobs = @"https://www.cooljobs.eu/cz/%s";
+        /// <summary>
+        /// CoolJobs.eu search URL template.
+        /// </summary>
+        public const string Cooljobs = @"https://www.cooljobs.eu/cz/%s";
     }
 
+    /// <summary>
+    /// Provides Chrome search shortcut URL templates.
+    /// </summary>
     public static class ChromeSearchShortcut
     {
-        public const string gp = "https://play.google.com/store/search?q=%s";
-        public const string a = "https://chrome.google.com/webstore/search/%s?hl=en&gl=US";
+        /// <summary>
+        /// Google Play Store search URL template.
+        /// </summary>
+        public const string GooglePlay = "https://play.google.com/store/search?q=%s";
+
+        /// <summary>
+        /// Chrome Web Store search URL template.
+        /// </summary>
+        public const string ChromeWebStoreSearch = "https://chrome.google.com/webstore/search/%s?hl=en&gl=US";
     }
 }

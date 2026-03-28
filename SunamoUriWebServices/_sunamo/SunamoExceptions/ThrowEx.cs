@@ -1,27 +1,37 @@
 namespace SunamoUriWebServices._sunamo.SunamoExceptions;
 
-// EN: Variable names have been checked and replaced with self-descriptive names
-// CZ: Názvy proměnných byly zkontrolovány a nahrazeny samopopisnými názvy
+/// <summary>
+/// Provides methods for throwing exceptions with diagnostic information.
+/// </summary>
 internal partial class ThrowEx
 {
-
+    /// <summary>
+    /// Checks if a string argument is null or empty and throws if so.
+    /// </summary>
+    /// <param name="argName">The name of the argument.</param>
+    /// <param name="argValue">The value of the argument.</param>
+    /// <returns>True if the argument is null or empty.</returns>
     internal static bool IsNullOrEmpty(string argName, string argValue)
     { return ThrowIsNotNull(Exceptions.IsNullOrWhitespace(FullNameOfExecutedCode(), argName, argValue, true)); }
 
     #region Other
+    /// <summary>
+    /// Gets the full name of the currently executed code location.
+    /// </summary>
+    /// <returns>Full name including type and method.</returns>
     internal static string FullNameOfExecutedCode()
     {
-        Tuple<string, string, string> placeOfExc = Exceptions.PlaceOfException();
-        string f = FullNameOfExecutedCode(placeOfExc.Item1, placeOfExc.Item2, true);
-        return f;
+        Tuple<string, string, string> placeOfException = Exceptions.PlaceOfException();
+        string fullName = FullNameOfExecutedCode(placeOfException.Item1, placeOfException.Item2, true);
+        return fullName;
     }
 
-    static string FullNameOfExecutedCode(object type, string methodName, bool fromThrowEx = false)
+    private static string FullNameOfExecutedCode(object type, string methodName, bool isFromThrowEx = false)
     {
         if (methodName == null)
         {
             int depth = 2;
-            if (fromThrowEx)
+            if (isFromThrowEx)
             {
                 depth++;
             }
@@ -29,9 +39,9 @@ internal partial class ThrowEx
             methodName = Exceptions.CallingMethod(depth);
         }
         string typeFullName;
-        if (type is Type type2)
+        if (type is Type typeValue)
         {
-            typeFullName = type2.FullName ?? "Type cannot be get via type is Type type2";
+            typeFullName = typeValue.FullName ?? "Type cannot be get via type is Type type2";
         }
         else if (type is MethodBase method)
         {
@@ -50,12 +60,18 @@ internal partial class ThrowEx
         return string.Concat(typeFullName, ".", methodName);
     }
 
-    internal static bool ThrowIsNotNull(string? exception, bool reallyThrow = true)
+    /// <summary>
+    /// Throws an exception if the provided exception message is not null.
+    /// </summary>
+    /// <param name="exception">The exception message.</param>
+    /// <param name="isReallyThrowing">Whether to actually throw or just return true.</param>
+    /// <returns>True if exception was not null.</returns>
+    internal static bool ThrowIsNotNull(string? exception, bool isReallyThrowing = true)
     {
         if (exception != null)
         {
             Debugger.Break();
-            if (reallyThrow)
+            if (isReallyThrowing)
             {
                 throw new Exception(exception);
             }

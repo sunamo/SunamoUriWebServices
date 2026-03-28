@@ -1,38 +1,21 @@
 namespace SunamoUriWebServices;
 
+/// <summary>
+/// Provides URI building methods for various web services.
+/// </summary>
 public partial class UriWebServices
 {
-
-
-    public const string githubCom = "https://github.com/";
     /// <summary>
-    ///     alphabetically
+    /// GitHub base URL.
     /// </summary>
+    public const string GithubCom = "https://github.com/";
+
     private static readonly List<string> myGithubReposNames = new();
-    //SHGetLines.GetLines(@"GridControlsInWpf_Blog
-    //MyCodeExample
-    //sugo
-    //sunamo
-    //sunamo5
-    //SunamoCssGenerator
-    //SunamoEditorConfig
-    //SunamoLaTeX
-    //SunamoMathpix
-    //SunamoRobotsTxt
-    //SunamoRuleset
-    //PlatformIndependentNuGetPackages
-    //PlatformIndependentNuGetPackages5
-    //PlatformIndependentNuGetPackages.Tests
-    //sunamo.github.io
-    //sunamo.notmine
-    //sunamo.notmine5
-    //sunamo.notmine.Tests
-    //sunamo.performance
-    //sunamo.Tests
-    //sunamo.unsafe
-    //sunamo.unsafe.Tests
-    //sunpm
-    //TranslateEngine");
+
+    /// <summary>
+    /// Opens a URI in the default browser, handling cross-platform differences.
+    /// </summary>
+    /// <param name="url">The URL to open.</param>
     public static void OpenUri(string url)
     {
         try
@@ -41,11 +24,8 @@ public partial class UriWebServices
         }
         catch
         {
-            // hack because of this: https://github.com/dotnet/corefx/issues/10361
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
-                // Tohle nevím k čemu tu je, mrví to to akorát adresy
-                //url = url.Replace("&", "^&");
                 Process.Start(new ProcessStartInfo(url) { UseShellExecute = true });
             }
             else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
@@ -62,24 +42,52 @@ public partial class UriWebServices
             }
         }
     }
-    public static bool IsGithubRepo(string fn)
+
+    /// <summary>
+    /// Checks if the specified repository name is a known GitHub repository.
+    /// </summary>
+    /// <param name="repositoryName">The repository name to check.</param>
+    /// <returns>True if the repository is a known GitHub repository.</returns>
+    public static bool IsGithubRepo(string repositoryName)
     {
-        return myGithubReposNames.Contains(fn);
+        return myGithubReposNames.Contains(repositoryName);
     }
-    public static string GitClone(string slnName)
+
+    /// <summary>
+    /// Gets the Git clone URL for the specified solution name.
+    /// </summary>
+    /// <param name="solutionName">The solution name.</param>
+    /// <returns>The Git clone URL.</returns>
+    public static string GitClone(string solutionName)
     {
-        return githubCom + "sunamo/" + slnName + ".git";
+        return GithubCom + "sunamo/" + solutionName + ".git";
     }
-    public static string AzureRepoWebUIFullOrGithub(string fn, AzureBuildUriArgs a = null)
+
+    /// <summary>
+    /// Gets the Azure Repo Web UI URL or GitHub clone URL based on repository type.
+    /// </summary>
+    /// <param name="repositoryName">The repository name.</param>
+    /// <param name="args">Optional Azure build URI arguments.</param>
+    /// <returns>The repository URL.</returns>
+    public static string AzureRepoWebUIFullOrGithub(string repositoryName, AzureBuildUriArgs? args = null)
     {
-        if (IsGithubRepo(fn)) return GitClone(fn);
-        return AzureRepoWebUIFull(fn, a);
+        if (IsGithubRepo(repositoryName)) return GitClone(repositoryName);
+        return AzureRepoWebUIFull(repositoryName, args);
     }
+
+    /// <summary>
+    /// Provides Facebook-related URL building methods.
+    /// </summary>
     public partial class Facebook
     {
-        public static string FacebookProfile(string nick)
+        /// <summary>
+        /// Gets the Facebook profile URL for the specified nickname.
+        /// </summary>
+        /// <param name="nickname">The Facebook username or nickname.</param>
+        /// <returns>The Facebook profile URL.</returns>
+        public static string FacebookProfile(string nickname)
         {
-            return "https://www.facebook.com/" + nick;
+            return "https://www.facebook.com/" + nickname;
         }
     }
 }
