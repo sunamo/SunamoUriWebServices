@@ -1,11 +1,24 @@
 namespace SunamoUriWebServices._sunamo.SunamoExceptions;
 
+/// <summary>
+/// Provides methods for throwing exceptions with diagnostic information.
+/// </summary>
 internal partial class ThrowEx
 {
+    /// <summary>
+    /// Checks if a string argument is null or empty and throws if so.
+    /// </summary>
+    /// <param name="argName">The name of the argument.</param>
+    /// <param name="argValue">The value of the argument.</param>
+    /// <returns>True if the argument is null or empty.</returns>
     internal static bool IsNullOrEmpty(string argName, string argValue)
     { return ThrowIsNotNull(Exceptions.IsNullOrWhitespace(FullNameOfExecutedCode(), argName, argValue, true)); }
 
     #region Other
+    /// <summary>
+    /// Gets the full name of the currently executed code location.
+    /// </summary>
+    /// <returns>Full name including type and method.</returns>
     internal static string FullNameOfExecutedCode()
     {
         Tuple<string, string, string> placeOfException = Exceptions.PlaceOfException();
@@ -47,6 +60,12 @@ internal partial class ThrowEx
         return string.Concat(typeFullName, ".", methodName);
     }
 
+    /// <summary>
+    /// Throws an exception if the provided exception message is not null.
+    /// </summary>
+    /// <param name="exception">The exception message.</param>
+    /// <param name="isReallyThrowing">Whether to actually throw or just return true.</param>
+    /// <returns>True if exception was not null.</returns>
     internal static bool ThrowIsNotNull(string? exception, bool isReallyThrowing = true)
     {
         if (exception != null)
