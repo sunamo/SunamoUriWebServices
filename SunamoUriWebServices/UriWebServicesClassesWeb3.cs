@@ -30,10 +30,7 @@ public partial class UriWebServices
         /// </summary>
         /// <param name="text">The input text to process.</param>
         /// <returns>The text with operators removed.</returns>
-        public static string ReplaceOperators(string text)
-        {
-            return SHReplace.ReplaceAll(text, "", "OR", "+", "-", "\"", "*");
-        }
+        public static string ReplaceOperators(string text) => SHReplace.ReplaceAll(text, "", "OR", "+", "-", "\"", "*");
 
         /// <summary>
         /// Parses YouTube video code from a URI. Returns null if the code cannot be extracted.
@@ -108,30 +105,21 @@ public partial class UriWebServices
         /// </summary>
         /// <param name="searchQuery">The search query.</param>
         /// <returns>The YouTube search URL.</returns>
-        public static string GetLinkToSearch(string searchQuery)
-        {
-            return "https://www.youtube.com/results?search_query=" + HttpUtility.UrlEncode(searchQuery);
-        }
+        public static string GetLinkToSearch(string searchQuery) => "https://www.youtube.com/results?search_query=" + HttpUtility.UrlEncode(searchQuery);
 
         /// <summary>
         /// Gets YouTube video URL for the specified video code.
         /// </summary>
         /// <param name="videoCode">The YouTube video code.</param>
         /// <returns>The YouTube video URL.</returns>
-        public static string GetLinkToVideo(string videoCode)
-        {
-            return YtVideoStart + videoCode;
-        }
+        public static string GetLinkToVideo(string videoCode) => YtVideoStart + videoCode;
 
         /// <summary>
         /// Gets HTML anchor element for the specified YouTube video code.
         /// </summary>
         /// <param name="videoCode">The YouTube video code.</param>
         /// <returns>An HTML anchor element linking to the video.</returns>
-        public static string GetHtmlAnchor(string videoCode)
-        {
-            return "<a href='" + GetLinkToVideo(videoCode) + "'>" + videoCode + "</a>";
-        }
+        public static string GetHtmlAnchor(string videoCode) => "<a href='" + GetLinkToVideo(videoCode) + "'>" + videoCode + "</a>";
     }
 
     /// <summary>

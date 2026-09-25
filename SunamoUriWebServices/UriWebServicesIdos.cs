@@ -17,9 +17,9 @@ public class UriWebServicesIdos
     {
         int daysToAdd = (inputDate.Month == 12 && inputDate.Day > 13) ? 180 : 45;
 
-        DateTime futureDate = inputDate.AddDays(daysToAdd);
+        var futureDate = inputDate.AddDays(daysToAdd);
 
-        DateTime target = new DateTime(futureDate.Year, futureDate.Month, 13);
+        var target = new DateTime(futureDate.Year, futureDate.Month, 13);
 
         while (target.DayOfWeek == DayOfWeek.Saturday || target.DayOfWeek == DayOfWeek.Sunday)
         {
@@ -37,7 +37,7 @@ public class UriWebServicesIdos
     /// <returns>The formatted IDOS train search URL.</returns>
     public static string Train(string departureStation, string arrivalStation)
     {
-        DateTime target = CalculateTargetDate(DateTime.Today);
+        var target = CalculateTargetDate(DateTime.Today);
         string formattedDate = target.ToString("dd.MM.yyyy", CultureInfo.InvariantCulture);
 
         return $"https://idos.cz/vlaky/spojeni/vysledky/?date={formattedDate}&time=07:00&f={departureStation}&fc=1&t={arrivalStation}&tc=1";

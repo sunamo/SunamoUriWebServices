@@ -147,30 +147,21 @@ public partial class UriWebServices
         /// </summary>
         /// <param name="searchQuery">The search query.</param>
         /// <returns>The formatted Bazos.cz search URL.</returns>
-        public static string SearchBazosCz(string searchQuery)
-        {
-            return FromChromeReplacement(BazosCz, searchQuery);
-        }
+        public static string SearchBazosCz(string searchQuery) => FromChromeReplacement(BazosCz, searchQuery);
 
         /// <summary>
         /// Gets Hyperinzerce.cz search URL for the specified query (Moravian-Silesian region).
         /// </summary>
         /// <param name="searchQuery">The search query.</param>
         /// <returns>The formatted Hyperinzerce.cz search URL.</returns>
-        public static string SearchHyperinzerceCz(string searchQuery)
-        {
-            return FromChromeReplacement(HyperinzerceCz, searchQuery);
-        }
+        public static string SearchHyperinzerceCz(string searchQuery) => FromChromeReplacement(HyperinzerceCz, searchQuery);
 
         /// <summary>
         /// Gets Bazar.cz search URL for the specified query (70800, 25km radius).
         /// </summary>
         /// <param name="searchQuery">The search query.</param>
         /// <returns>The formatted Bazar.cz search URL.</returns>
-        public static string SearchBazarCz(string searchQuery)
-        {
-            return FromChromeReplacement(BazarCz, searchQuery);
-        }
+        public static string SearchBazarCz(string searchQuery) => FromChromeReplacement(BazarCz, searchQuery);
 
         /// <summary>
         /// Replaces Chrome search placeholder with the specified term.
@@ -178,30 +169,21 @@ public partial class UriWebServices
         /// <param name="uri">The URI template.</param>
         /// <param name="term">The search term.</param>
         /// <returns>The formatted URI.</returns>
-        public static string FromChromeReplacement(string uri, string term)
-        {
-            return UriWebServices.FromChromeReplacement(uri, term);
-        }
+        public static string FromChromeReplacement(string uri, string term) => UriWebServices.FromChromeReplacement(uri, term);
 
         /// <summary>
         /// Gets SBazar.cz search URL for the specified query.
         /// </summary>
         /// <param name="searchQuery">The search query.</param>
         /// <returns>The formatted SBazar.cz search URL.</returns>
-        public static string SearchSBazarCz(string searchQuery)
-        {
-            return FromChromeReplacement(SBazarCz, searchQuery);
-        }
+        public static string SearchSBazarCz(string searchQuery) => FromChromeReplacement(SBazarCz, searchQuery);
 
         /// <summary>
         /// Gets Avizo.cz search URL for the specified query.
         /// </summary>
         /// <param name="searchQuery">The search query.</param>
         /// <returns>The formatted Avizo.cz search URL.</returns>
-        public static string SearchAvizoCz(string searchQuery)
-        {
-            return FromChromeReplacement(AvizoCz, searchQuery);
-        }
+        public static string SearchAvizoCz(string searchQuery) => FromChromeReplacement(AvizoCz, searchQuery);
     }
 
     /// <summary>

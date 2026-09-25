@@ -107,30 +107,21 @@ public partial class UriWebServices
     /// </summary>
     /// <param name="searchQuery">The search query.</param>
     /// <returns>The formatted GitHub search URL.</returns>
-    public static string SearchGitHub(string searchQuery)
-    {
-        return "https://github.com/search?q=" + searchQuery;
-    }
+    public static string SearchGitHub(string searchQuery) => "https://github.com/search?q=" + searchQuery;
 
     /// <summary>
     /// Gets WebShare search URL for the specified search query.
     /// </summary>
     /// <param name="searchQuery">The search query.</param>
     /// <returns>The formatted WebShare search URL.</returns>
-    public static string WebShare(string searchQuery)
-    {
-        return "https://webshare.cz/#/search?what=" + UrlEncode(searchQuery);
-    }
+    public static string WebShare(string searchQuery) => "https://webshare.cz/#/search?what=" + UrlEncode(searchQuery);
 
     /// <summary>
     /// Gets Google Plus profile URL for the specified nickname.
     /// </summary>
     /// <param name="nickname">The Google Plus username.</param>
     /// <returns>The Google Plus profile URL.</returns>
-    public static string GooglePlusProfile(string nickname)
-    {
-        return "https://www.google.com/" + nickname;
-    }
+    public static string GooglePlusProfile(string nickname) => "https://www.google.com/" + nickname;
 
     /// <summary>
     /// Searches Google for a query across all provided sites.
@@ -152,20 +143,14 @@ public partial class UriWebServices
     /// </summary>
     /// <param name="text">The search text.</param>
     /// <returns>The formatted Google search URL.</returns>
-    public static string GoogleSearch(string text)
-    {
-        return "https://www.google.cz/search?hl=cs&q=" + UrlEncode(text);
-    }
+    public static string GoogleSearch(string text) => "https://www.google.cz/search?hl=cs&q=" + UrlEncode(text);
 
     /// <summary>
     /// Gets Google Images search URL for the specified text.
     /// </summary>
     /// <param name="text">The search text.</param>
     /// <returns>The formatted Google Images search URL.</returns>
-    public static string GoogleSearchImages(string text)
-    {
-        return "https://www.google.cz/search?hl=cs&tbm=isch&q=" + UrlEncode(text);
-    }
+    public static string GoogleSearchImages(string text) => "https://www.google.cz/search?hl=cs&tbm=isch&q=" + UrlEncode(text);
 
     /// <summary>
     /// Gets Google site-specific search URL.
@@ -186,10 +171,7 @@ public partial class UriWebServices
     /// </summary>
     /// <param name="solutionName">The solution name.</param>
     /// <returns>The VSTS Git repository URL.</returns>
-    public static string GitRepoInVsts(string solutionName)
-    {
-        return "https://radekjancik.visualstudio.com/_git/" + WebUtility.UrlEncode(solutionName);
-    }
+    public static string GitRepoInVsts(string solutionName) => "https://radekjancik.visualstudio.com/_git/" + WebUtility.UrlEncode(solutionName);
 
     /// <summary>
     /// Gets Azure Repo Web UI full URL (alternative format, currently shows gray screen).
@@ -213,30 +195,21 @@ public partial class UriWebServices
     /// <param name="solutionName">The solution name.</param>
     /// <param name="args">Optional Azure build URI arguments.</param>
     /// <returns>The Azure Repo Web UI URL.</returns>
-    public static string AzureRepoWebUI(string solutionName, AzureBuildUriArgs? args = null)
-    {
-        return AzureRepoWebUIDomain(args) + WebUtility.UrlEncode(solutionName);
-    }
+    public static string AzureRepoWebUI(string solutionName, AzureBuildUriArgs? args = null) => AzureRepoWebUIDomain(args) + WebUtility.UrlEncode(solutionName);
 
     /// <summary>
     /// Gets Azure Repo Web UI settings URL for the specified solution name.
     /// </summary>
     /// <param name="solutionName">The solution name.</param>
     /// <returns>The Azure Repo Web UI settings URL.</returns>
-    public static string AzureRepoWebUISettings(string solutionName)
-    {
-        return AzureRepoWebUI(solutionName) + "/_settings/";
-    }
+    public static string AzureRepoWebUISettings(string solutionName) => AzureRepoWebUI(solutionName) + "/_settings/";
 
     /// <summary>
     /// URL-encodes the specified text.
     /// </summary>
     /// <param name="text">The text to encode.</param>
     /// <returns>The URL-encoded text.</returns>
-    public static string UrlEncode(string text)
-    {
-        return HttpUtility.UrlEncode(text);
-    }
+    public static string UrlEncode(string text) => HttpUtility.UrlEncode(text);
 
     /// <summary>
     /// Gets Azure Repo Web UI full URL (currently shows gray screen).
@@ -265,20 +238,14 @@ public partial class UriWebServices
     /// </summary>
     /// <param name="nickname">The YouTube username.</param>
     /// <returns>The YouTube profile URL.</returns>
-    public static string YouTubeProfile(string nickname)
-    {
-        return "https://www.youtube.com/c/" + nickname;
-    }
+    public static string YouTubeProfile(string nickname) => "https://www.youtube.com/c/" + nickname;
 
     /// <summary>
     /// Gets Twitter profile URL for the specified nickname.
     /// </summary>
     /// <param name="nickname">The Twitter username.</param>
     /// <returns>The Twitter profile URL.</returns>
-    public static string TwitterProfile(string nickname)
-    {
-        return "https://www.twitter.com/" + nickname;
-    }
+    public static string TwitterProfile(string nickname) => "https://www.twitter.com/" + nickname;
 
     /// <summary>
     /// Searches in all provided Chrome replacement URL templates for the specified query.
@@ -321,7 +288,7 @@ public partial class UriWebServices
     public static string GoogleMaps(string coordsOrAddress, string center, string zoom)
     {
         var stringBuilder = new StringBuilder();
-        stringBuilder.Append("https://maps.google.com/maps?q=" + coordsOrAddress.Replace("", "+") + "&hl=cs&ie=UTF8&t=h");
+        stringBuilder.Append("https://maps.google.com/maps?q=" + coordsOrAddress.Replace(" ", "+") + "&hl=cs&ie=UTF8&t=h");
         if (!string.IsNullOrEmpty(center))
             stringBuilder.Append("&ll=" + center);
         if (!string.IsNullOrEmpty(zoom))

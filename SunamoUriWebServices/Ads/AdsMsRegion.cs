@@ -44,10 +44,7 @@ public static class AdsMsRegion
     /// </summary>
     /// <param name="searchQuery">The search query.</param>
     /// <returns>The formatted search URL.</returns>
-    public static string SearchBazosCz(string searchQuery)
-    {
-        return FromChromeReplacement(Instance.BazosCz, searchQuery);
-    }
+    public static string SearchBazosCz(string searchQuery) => FromChromeReplacement(Instance.BazosCz, searchQuery);
 
     /// <summary>
     /// Replaces Chrome search placeholder with the specified term.
@@ -55,30 +52,21 @@ public static class AdsMsRegion
     /// <param name="uri">The URI template with placeholder.</param>
     /// <param name="term">The search term to insert.</param>
     /// <returns>The formatted URI.</returns>
-    public static string FromChromeReplacement(string uri, string term)
-    {
-        return UriWebServices.FromChromeReplacement(uri, term);
-    }
+    public static string FromChromeReplacement(string uri, string term) => UriWebServices.FromChromeReplacement(uri, term);
 
     /// <summary>
     /// Gets Hyperinzerce.cz search URL for the specified query (Moravian-Silesian region).
     /// </summary>
     /// <param name="searchQuery">The search query.</param>
     /// <returns>The formatted search URL.</returns>
-    public static string SearchHyperinzerceCz(string searchQuery)
-    {
-        return FromChromeReplacement(HyperinzerceCz, searchQuery);
-    }
+    public static string SearchHyperinzerceCz(string searchQuery) => FromChromeReplacement(HyperinzerceCz, searchQuery);
 
     /// <summary>
     /// Gets Bazar.cz search URL for the specified query (70800, 25km radius).
     /// </summary>
     /// <param name="searchQuery">The search query.</param>
     /// <returns>The formatted search URL.</returns>
-    public static string SearchBazarCz(string searchQuery)
-    {
-        return FromChromeReplacement(BazarCz, searchQuery);
-    }
+    public static string SearchBazarCz(string searchQuery) => FromChromeReplacement(BazarCz, searchQuery);
 
     #endregion
 }

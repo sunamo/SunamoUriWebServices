@@ -294,50 +294,35 @@ public partial class UriWebServices
         /// </summary>
         /// <param name="cacheGuid">The cache GUID.</param>
         /// <returns>The cache details URL.</returns>
-        public static string CacheDetails(string cacheGuid)
-        {
-            return "https://www.geocaching.com/seek/cache_details.aspx?guid=" + cacheGuid;
-        }
+        public static string CacheDetails(string cacheGuid) => "https://www.geocaching.com/seek/cache_details.aspx?guid=" + cacheGuid;
 
         /// <summary>
         /// Gets the gallery URL for the specified cache GUID.
         /// </summary>
         /// <param name="cacheGuid">The cache GUID.</param>
         /// <returns>The cache gallery URL.</returns>
-        public static string Gallery(string cacheGuid)
-        {
-            return "https://www.geocaching.com/seek/gallery.aspx?guid=" + cacheGuid;
-        }
+        public static string Gallery(string cacheGuid) => "https://www.geocaching.com/seek/gallery.aspx?guid=" + cacheGuid;
 
         /// <summary>
         /// Gets the log URL for the specified cache GUID.
         /// </summary>
         /// <param name="cacheGuid">The cache GUID.</param>
         /// <returns>The cache log URL.</returns>
-        public static string Log(string cacheGuid)
-        {
-            return "https://www.geocaching.com/seek/log.aspx?guid=" + cacheGuid;
-        }
+        public static string Log(string cacheGuid) => "https://www.geocaching.com/seek/log.aspx?guid=" + cacheGuid;
 
         /// <summary>
         /// Gets the coords.info URL for the specified cache code.
         /// </summary>
         /// <param name="cacheCode">The cache code.</param>
         /// <returns>The coords.info URL.</returns>
-        public static string CoordsInfo(string cacheCode)
-        {
-            return "https://coords.info/" + cacheCode;
-        }
+        public static string CoordsInfo(string cacheCode) => "https://coords.info/" + cacheCode;
 
         /// <summary>
         /// Gets the coords.info URL for the specified GC code suffix.
         /// </summary>
         /// <param name="cacheCode">The GC code suffix.</param>
         /// <returns>The coords.info GC URL.</returns>
-        public static string GC(string cacheCode)
-        {
-            return "https://coords.info/GC" + cacheCode;
-        }
+        public static string GC(string cacheCode) => "https://coords.info/GC" + cacheCode;
     }
 
     /// <summary>
@@ -350,9 +335,6 @@ public partial class UriWebServices
         /// </summary>
         /// <param name="searchQuery">The search query.</param>
         /// <returns>The Facebook top search URL.</returns>
-        public static string FbTopSearch(string searchQuery)
-        {
-            return FromChromeReplacement("https://www.facebook.com/search/top/?q=%s&epa=SEARCH_BOX", searchQuery);
-        }
+        public static string FbTopSearch(string searchQuery) => FromChromeReplacement("https://www.facebook.com/search/top/?q=%s&epa=SEARCH_BOX", searchQuery);
     }
 }
