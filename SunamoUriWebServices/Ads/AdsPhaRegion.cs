@@ -1,14 +1,7 @@
 namespace SunamoUriWebServices.Ads;
 
-/// <summary>
-/// Advertisement search URLs for the Prague region.
-/// </summary>
 public class AdsPhaRegion
 {
-    /// <summary>
-    /// Creates a preconfigured region search instance for Prague.
-    /// </summary>
-    /// <returns>An <see cref="AdsRegionBase"/> instance configured for Prague.</returns>
     public static AdsRegionBase Pha()
     {
         var hyperinzerceCz = "https://hyperinzerce.cz/inzeraty/Index?query=%s&distanceSearch=False&regionIds=PHA&sortBy=Default";
