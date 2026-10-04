@@ -1,5 +1,10 @@
 # SunamoUriWebServices
 
+## Short description
+
+Knihovna pro sestavování vyhledávacích dotazů pro mnoho webových serverů. Součást sbírky pinp s testy a Runnerem.
+
+
 Search queries for many servers
 
 ## Overview
