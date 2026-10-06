@@ -1,8 +1,5 @@
 namespace SunamoUriWebServices;
 
-/// <summary>
-/// Contains methods that build URLs from Chrome search replacement templates.
-/// </summary>
 public partial class UriWebServices
 {
     /// <summary>
@@ -19,11 +16,6 @@ public partial class UriWebServices
     /// <returns>The formatted Mapy.cz URL.</returns>
     public static string MapyCz(string searchQuery) => FromChromeReplacement("https://mapy.cz/?q=%s&sourceid=Searchmodule_1", searchQuery);
 
-    /// <summary>
-    /// Gets TopRecepty.cz URL for the specified search query.
-    /// </summary>
-    /// <param name="searchQuery">The search query.</param>
-    /// <returns>The formatted TopRecepty.cz URL.</returns>
     public static string TopRecepty(string searchQuery)
     {
         return FromChromeReplacement("https://www.toprecepty.cz/vyhledavani.php?hledam=%s&kategorie=&autor=&razeni=",
@@ -37,10 +29,6 @@ public partial class UriWebServices
     /// <returns>The formatted Google Maps URL.</returns>
     private static string GoogleMaps(string location) => FromChromeReplacement("https://www.google.com/maps/place/%", location);
 
-    /// <summary>
-    /// Opens Google Maps for each location in the list.
-    /// </summary>
-    /// <param name="list">The list of locations to open.</param>
     public static void GoogleMaps(List<string> list)
     {
         foreach (var item in list) UriWebServices.OpenUri(GoogleMaps(item));
