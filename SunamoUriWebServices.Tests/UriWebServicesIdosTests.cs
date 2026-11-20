@@ -21,8 +21,7 @@ public class UriWebServicesIdosTests
         DateTime result = UriWebServicesIdos.CalculateTargetDate(testDate);
 
         // Assert
-        // EN: 13.12.2025 is Saturday, so should return Friday 12.12.2025
-        // CZ: 13.12.2025 je sobota, takže by měl vrátit pátek 12.12.2025
+        // 13.12.2025 is Saturday, so should return Friday 12.12.2025
         Assert.Equal(new DateTime(2025, 12, 12), result);
     }
 
