@@ -1,4 +1,3 @@
-// variables names: ok
 namespace SunamoUriWebServices.Ads;
 
 public class AdsByPsc
