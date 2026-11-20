@@ -1,11 +1,23 @@
 namespace SunamoUriWebServices.Values;
 
+/// <summary>
+/// Represents the repair mobile values type.
+/// </summary>
 public class RepairMobileValues
 {
+    /// <summary>
+    /// Gets or sets the all repair services ova.
+    /// </summary>
     public static List<string>? AllRepairServicesOva { get; set; }
 
+    /// <summary>
+    /// Gets or sets the all repair kit shops.
+    /// </summary>
     public static List<string>? AllRepairKitShops { get; set; }
 
+    /// <summary>
+    /// Gets or sets the repair kit shops free pickup ostrava.
+    /// </summary>
     public static List<string>? RepairKitShopsFreePickupOstrava { get; set; }
 
     static RepairMobileValues()

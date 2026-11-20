@@ -1,19 +1,40 @@
 namespace SunamoUriWebServices.Ads;
 
 // For phones, etc. repas sites like mp.cz are better.
+/// <summary>
+/// Represents the ads ms region type.
+/// </summary>
 public static class AdsMsRegion
 {
+    /// <summary>
+    /// The hyperinzerce cz constant.
+    /// </summary>
     public const string HyperinzerceCz =
         "https://hyperinzerce.cz/inzeraty/Index?query=%s&priceFrom=0&priceTo=99000000&distanceSearch=False&regionIds=HKK";
 
+    /// <summary>
+    /// The bazar cz constant.
+    /// </summary>
     public const string BazarCz = "https://www.bazar.cz/ostrava/hledat/%s/?a=25&p=%psc&pid=6934";
 
+    /// <summary>
+    /// The s bazar cz constant.
+    /// </summary>
     public const string SBazarCz = "https://www.sbazar.cz/hledej/%s/0-vsechny-kategorie/moravskoslezsky";
 
+    /// <summary>
+    /// The avizo cz constant.
+    /// </summary>
     public const string AvizoCz = "https://www.avizo.cz/fulltext/?beng=1&searchfor=ads&keywords=%s";
 
+    /// <summary>
+    /// The reflection type.
+    /// </summary>
     public static Type ReflectionType = typeof(AdsMsRegion);
 
+    /// <summary>
+    /// The instance.
+    /// </summary>
     public static AdsRegionBase Instance = new("70800", HyperinzerceCz, BazarCz, SBazarCz, AvizoCz);
 
     #region Methods
