@@ -16,6 +16,11 @@ public partial class UriWebServices
     /// <returns>The formatted Mapy.cz URL.</returns>
     public static string MapyCz(string searchQuery) => FromChromeReplacement("https://mapy.cz/?q=%s&sourceid=Searchmodule_1", searchQuery);
 
+    /// <summary>
+    /// Top recepty.
+    /// </summary>
+    /// <param name="searchQuery">The search query.</param>
+    /// <returns>The top recepty result.</returns>
     public static string TopRecepty(string searchQuery)
     {
         return FromChromeReplacement("https://www.toprecepty.cz/vyhledavani.php?hledam=%s&kategorie=&autor=&razeni=",
@@ -29,6 +34,10 @@ public partial class UriWebServices
     /// <returns>The formatted Google Maps URL.</returns>
     private static string GoogleMaps(string location) => FromChromeReplacement("https://www.google.com/maps/place/%", location);
 
+    /// <summary>
+    /// Google maps.
+    /// </summary>
+    /// <param name="list">The list.</param>
     public static void GoogleMaps(List<string> list)
     {
         foreach (var item in list) UriWebServices.OpenUri(GoogleMaps(item));

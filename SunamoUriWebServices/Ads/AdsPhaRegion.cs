@@ -1,7 +1,14 @@
 namespace SunamoUriWebServices.Ads;
 
+/// <summary>
+/// Represents the ads pha region type.
+/// </summary>
 public class AdsPhaRegion
 {
+    /// <summary>
+    /// Pha.
+    /// </summary>
+    /// <returns>The pha result.</returns>
     public static AdsRegionBase Pha()
     {
         var hyperinzerceCz = "https://hyperinzerce.cz/inzeraty/Index?query=%s&distanceSearch=False&regionIds=PHA&sortBy=Default";

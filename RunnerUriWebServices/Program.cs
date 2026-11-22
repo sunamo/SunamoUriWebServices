@@ -1,4 +1,3 @@
-// variables names: ok
 
 using SunamoUriWebServices;
 using SunamoUriWebServices.Ads;
