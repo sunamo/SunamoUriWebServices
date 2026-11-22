@@ -102,6 +102,17 @@ public partial class UriWebServices
     }
 
     /// <summary>
+    /// Gets the URL of the search on spritmonitor.de itself (not a Google site search) for the car model.
+    /// </summary>
+    /// <param name="carModel">The car model to search for.</param>
+    /// <returns>The search URL with the escaped car model.</returns>
+    public static string SpritMonitorSearch(string carModel)
+    {
+        if (carModel == null) throw new ArgumentNullException(nameof(carModel));
+        return "https://www.spritmonitor.de/en/search.html?searchterm=" + Uri.EscapeDataString(carModel);
+    }
+
+    /// <summary>
     /// Gets GitHub search URL for the specified search query.
     /// </summary>
     /// <param name="searchQuery">The search query.</param>
